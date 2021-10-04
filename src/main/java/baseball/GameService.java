@@ -1,27 +1,22 @@
 package baseball;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import nextstep.utils.Randoms;
 
 public class GameService {
 
     public Game generateNewGame() {
-        Set<Integer> set = new HashSet<>();
+        LinkedHashSet<Integer> set = new LinkedHashSet<>();
         while (set.size() < 3) {
             set.add(Randoms.pickNumberInRange(1, 9));
         }
 
-        List<Integer> selectedNumbers = new ArrayList<>(set);
-        Collections.shuffle(selectedNumbers);
-
-        return new Game(selectedNumbers);
+        return new Game(new ArrayList<>(set));
     }
 
     public String calculateHint(Game game, String answer) {
