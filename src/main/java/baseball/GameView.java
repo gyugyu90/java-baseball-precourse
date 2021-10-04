@@ -35,10 +35,37 @@ public class GameView {
 	private boolean round(Game game) {
 		System.out.println("숫자를 입력해주세요: ");
 		String answer = Console.readLine();
-		String hint = gameService.calculateHint(game, answer);
+		if (!validate(answer)) {
+			return false;
+		}
 
+		String hint = gameService.calculateHint(game, answer);
 		System.out.println(hint);
 		return "3스트라이크".equals(hint);
+	}
+
+	private boolean validate(String answer) {
+		if (invalidPatternString(answer)) {
+			System.err.println("[ERROR] 1~9로 구성된 세자리의 숫자를 입력하셔야 합니다.");
+			return false;
+		}
+		if (containsDuplicateDigits(answer)) {
+			System.err.println("[ERROR] 숫자는 서로 다른 숫자를 입력하셔야 합니다.");
+			return false;
+		}
+		return true;
+	}
+
+	private boolean invalidPatternString(String source) {
+		return !pattern.matcher(source).matches();
+	}
+
+	private boolean containsDuplicateDigits(String source) {
+		Set<Character> set = new HashSet<>();
+		for (char c : source.toCharArray()) {
+			set.add(c);
+		}
+		return set.size() != 3;
 	}
 
 	private boolean askMoreGame() {
