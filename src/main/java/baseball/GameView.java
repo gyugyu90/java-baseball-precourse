@@ -16,7 +16,7 @@ public class GameView {
 
 	public void run() {
 		boolean stopped = false;
-		while(!stopped) {
+		while (!stopped) {
 			proceedGame();
 			stopped = askMoreGame();
 		}
@@ -26,7 +26,7 @@ public class GameView {
 		Game game = gameService.generateNewGame();
 
 		boolean matched = false;
-		while(!matched) {
+		while (!matched) {
 			matched = round(game);
 		}
 		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");

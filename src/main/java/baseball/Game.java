@@ -5,33 +5,33 @@ import java.util.List;
 
 public final class Game {
 
-    private final List<Integer> numbers;
+	private final List<Integer> numbers;
 
-    public Game(List<Integer> numbers) {
-        this.numbers = numbers;
-    }
+	public Game(List<Integer> numbers) {
+		this.numbers = numbers;
+	}
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
+	public List<Integer> getNumbers() {
+		return Collections.unmodifiableList(numbers);
+	}
 
-    public GameHint calculateGameHint(int index, int answer) {
-        if (numbers.get(index).equals(answer)) {
-            return GameHint.STRIKE;
-        }
+	public GameHint calculateGameHint(int index, int answer) {
+		if (numbers.get(index).equals(answer)) {
+			return GameHint.STRIKE;
+		}
 
-        if (numbers.contains(answer)) {
-            return GameHint.BALL;
-        }
+		if (numbers.contains(answer)) {
+			return GameHint.BALL;
+		}
 
-        return GameHint.NONE;
-    }
+		return GameHint.NONE;
+	}
 
-    @Override
-    public String toString() {
-        return "Game{" +
-                "numbers=" + numbers +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Game{"
+			+ "numbers=" + numbers
+			+ '}';
+	}
 
 }
