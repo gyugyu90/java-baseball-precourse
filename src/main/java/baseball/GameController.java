@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import nextstep.utils.Console;
 
-public class GameView {
+public class GameController {
 
 	private static final Pattern pattern = Pattern.compile("[1-9]{3}");
 	private static final Set<String> allowedAnswers = new HashSet<>(Arrays.asList("1", "2"));
