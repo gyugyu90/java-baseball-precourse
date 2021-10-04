@@ -15,6 +15,18 @@ public final class Game {
         return Collections.unmodifiableList(numbers);
     }
 
+    public GameHint calculateGameHint(int index, int answer) {
+        if (numbers.get(index).equals(answer)) {
+            return GameHint.STRIKE;
+        }
+
+        if (numbers.contains(answer)) {
+            return GameHint.BALL;
+        }
+
+        return GameHint.NONE;
+    }
+
     @Override
     public String toString() {
         return "Game{" +
