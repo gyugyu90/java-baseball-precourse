@@ -43,6 +43,6 @@ class GameServiceTest {
     void testCalculateHint(String expectedHint, String answer) {
         Game game = new Game(Arrays.asList(4, 2, 3));
 
-        assertEquals(expectedHint, gameService.calculateHint(game, answer));
+        assertEquals(expectedHint, gameService.calculateHint(game, answer).getHintMessage());
     }
 }

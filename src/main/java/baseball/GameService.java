@@ -19,7 +19,7 @@ public class GameService {
 		return new Game(new ArrayList<>(set));
 	}
 
-	public String calculateHint(Game game, String answer) {
+	public RoundResult calculateHint(Game game, String answer) {
 		List<Integer> numbers = game.getNumbers();
 
 		Map<GameHint, Integer> gameHintCounts = new HashMap<>();
@@ -29,7 +29,7 @@ public class GameService {
 			gameHintCounts.merge(gameHint, 1, (oldValue, newValue) -> oldValue + 1);
 		}
 
-		return convertHintMessage(gameHintCounts);
+		return new RoundResult(convertHintMessage(gameHintCounts), isFinished(gameHintCounts));
 	}
 
 	private String convertHintMessage(Map<GameHint, Integer> map) {
@@ -43,6 +43,10 @@ public class GameService {
 			return String.format("%d스트라이크", map.get(GameHint.STRIKE));
 		}
 		return String.format("%d볼", map.get(GameHint.BALL));
+	}
+
+	private boolean isFinished(Map<GameHint, Integer> map) {
+		return map.containsKey(GameHint.STRIKE) && map.get(GameHint.STRIKE) == 3;
 	}
 
 }
